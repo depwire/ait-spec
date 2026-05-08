@@ -1,52 +1,29 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/depwire/ait-spec/schemas/ait-session.schema.json",
-  "title": "AIT Session Token (AIT-S)",
-  "description": "JSON Schema for the AIT Session Token payload as defined in AIT v0.1",
+  "title": "AIT-S Session Token Payload",
+  "description": "Agent Identity Token — Session Token (AIT-S). Issued when an agent session begins.",
   "type": "object",
   "required": ["ait", "jti", "iss", "iat", "exp", "agent_id", "model", "model_provider", "scope"],
   "properties": {
-    "ait": {
-      "type": "string",
-      "const": "0.1",
-      "description": "AIT specification version"
-    },
-    "jti": {
-      "type": "string",
-      "format": "uuid",
-      "description": "Unique token identifier (UUID v4)"
-    },
-    "iss": {
-      "type": "string",
-      "description": "Issuer identifier (e.g., depwire-cli@1.1.8)"
-    },
-    "iat": {
-      "type": "integer",
-      "description": "Issued at (Unix timestamp)"
-    },
-    "exp": {
-      "type": "integer",
-      "description": "Expiration time (Unix timestamp)"
-    },
-    "agent_id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "Unique agent identifier (UUID v4)"
-    },
-    "model": {
-      "type": "string",
-      "description": "Model identifier (e.g., claude-sonnet-4-20250514)"
-    },
-    "model_provider": {
-      "type": "string",
-      "description": "Model provider (e.g., anthropic, openai)"
-    },
-    "human_ref": {
-      "type": "string",
-      "description": "SHA-256 hash of the human authorization event"
-    },
+    "ait": { "type": "string", "const": "0.1", "description": "AIT spec version" },
+    "jti": { "type": "string", "format": "uuid", "description": "Unique token ID (UUID v4)" },
+    "iss": { "type": "string", "description": "Issuer identifier (e.g. depwire-cli@1.1.8)" },
+    "iat": { "type": "integer", "description": "Issued at (Unix timestamp)" },
+    "exp": { "type": "integer", "description": "Expiry (Unix timestamp). Max 3600s from iat." },
+    "agent_id": { "type": "string", "format": "uuid", "description": "Unique agent identifier (UUID v4)" },
+    "model": { "type": "string", "description": "Model identifier (e.g. claude-sonnet-4-20250514)" },
+    "model_provider": { "type": "string", "description": "Model provider (e.g. anthropic, openai, google)" },
+    "human_ref": { "type": "string", "description": "SHA-256 hash of human authorization event (optional)" },
     "scope": {
-      "$ref": "#/$defs/scope"
+      "type": "object",
+      "required": ["read", "write", "execute"],
+      "properties": {
+        "read": { "type": "array", "items": { "type": "string" }, "description": "Glob patterns for readable paths" },
+        "write": { "type": "array", "items": { "type": "string" }, "description": "Glob patterns for writable paths" },
+        "execute": { "type": "array", "items": { "type": "string" }, "description": "Allowed executables" },
+        "deny": { "type": "array", "items": { "type": "string" }, "description": "Explicit deny patterns (overrides all)" }
+      }
     },
     "environment": {
       "type": "object",
@@ -54,34 +31,6 @@
         "repo": { "type": "string" },
         "commit": { "type": "string" },
         "branch": { "type": "string" }
-      }
-    }
-  },
-  "$defs": {
-    "scope": {
-      "type": "object",
-      "required": ["read", "write", "execute", "deny"],
-      "properties": {
-        "read": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Glob patterns for allowed read targets"
-        },
-        "write": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Glob patterns for allowed write targets"
-        },
-        "execute": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Allowed executables"
-        },
-        "deny": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Glob patterns for explicitly denied targets"
-        }
       }
     }
   }

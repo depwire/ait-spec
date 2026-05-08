@@ -5,6 +5,7 @@
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![Version](https://img.shields.io/badge/version-0.1.0--draft-blue.svg)](spec/ait-v0.1.0-draft.md)
 [![Status](https://img.shields.io/badge/status-RFC-orange.svg)](spec/ait-v0.1.0-draft.md)
+[![Open for Comments](https://img.shields.io/badge/RFC-open%20for%20comments-orange?style=flat)](https://github.com/depwire/ait-spec/issues)
 
 ---
 
@@ -160,6 +161,16 @@ AIT v0.1.0 is a **draft RFC** open for public comment.
 Feedback is welcome via [GitHub Issues](https://github.com/depwire/ait-spec/issues). The goal is an open standard, not a Depwire-proprietary one.
 
 **NIST alignment:** This specification is designed to align with NIST's February 2026 concept paper on *"Accelerating the Adoption of Software and AI Agent Identity and Authorization"* and the NIST AI Risk Management Framework.
+
+---
+
+## Governance
+
+AIT is stewarded by Depwire but governed by the community. The spec is published under CC0 1.0 Universal (public domain) — Depwire holds no special rights over implementations or derivative standards.
+
+Decisions about the spec are made through the public issue tracker. Any proposal with community consensus will be incorporated regardless of origin. The steward's role is to maintain the spec document and coordinate releases — not to control the direction.
+
+If the community decides a different steward is more appropriate, the CC0 license ensures the spec can be forked and continued independently.
 
 ---
 
