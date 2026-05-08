@@ -375,19 +375,11 @@ AIT is not a replacement for any of the above. It is composable with all of them
 
 ## 10. Reference Implementation
 
-The reference implementation of AIT v0.1 is provided by Depwire CLI:
+A reference implementation is in development by Depwire CLI (github.com/depwire/depwire). It will provide AIT token generation for MCP tool calls, chain verification, and audit log export.
 
-```bash
-npm install -g depwire-cli
-```
+Status: in progress. Tracking at github.com/depwire/ait-spec/issues/1
 
-The reference implementation provides:
-
-- AIT token generation for Depwire MCP tool calls
-- AIT chain verification
-- AIT audit log export (JSON, SARIF)
-
-Source: github.com/depwire/depwire
+Implementations by other tools, platforms, or AI providers are equally valid. The spec is CC0 (public domain) and requires no coordination with Depwire to implement.
 
 ---
 

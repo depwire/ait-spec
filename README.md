@@ -136,11 +136,15 @@ JSON Schema files for all three token types are in [`schemas/`](schemas/):
 
 ## Reference Implementation
 
-The reference implementation is [Depwire CLI](https://github.com/depwire/depwire) — a deterministic dependency graph tool for AI coding assistants.
+A reference implementation in [Depwire CLI](https://github.com/depwire/depwire) is in progress. It will provide:
 
-```bash
-npm install -g depwire-cli
-```
+- AIT token generation for every MCP tool call
+- AIT chain verification
+- AIT audit log export (JSON, SARIF)
+
+Tracking: [Issue #1](https://github.com/depwire/ait-spec/issues/1)
+
+Any tool, platform, or AI provider can implement AIT independently — the spec is CC0 (public domain) and requires no coordination with Depwire.
 
 ---
 
