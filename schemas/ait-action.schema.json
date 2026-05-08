@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/depwire/ait-spec/schemas/ait-action.schema.json",
+  "title": "AIT Action Token (AIT-A)",
+  "description": "JSON Schema for the AIT Action Token payload as defined in AIT v0.1",
+  "type": "object",
+  "required": ["ait", "jti", "iss", "iat", "exp", "session_ref", "agent_id", "action"],
+  "properties": {
+    "ait": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "jti": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "iss": {
+      "type": "string"
+    },
+    "iat": {
+      "type": "integer"
+    },
+    "exp": {
+      "type": "integer"
+    },
+    "session_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "JTI of the parent AIT-S or AIT-D"
+    },
+    "agent_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "action": {
+      "type": "object",
+      "required": ["type", "target"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["file_read", "file_write", "tool_call", "command_execute", "agent_spawn", "agent_terminate"]
+        },
+        "tool": {
+          "type": "string",
+          "description": "Tool or command name"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target resource (file path, URL, command)"
+        },
+        "params": {
+          "type": "object",
+          "description": "Action-specific parameters"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "SHA-256 of sorted active context window"
+        },
+        "files_in_context": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "token_count": {
+          "type": "integer"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "prev_hash": {
+          "type": "string",
+          "description": "SHA-256 of file content before action"
+        },
+        "post_hash": {
+          "type": "string",
+          "description": "SHA-256 of file content after action"
+        }
+      }
+    }
+  }
+}

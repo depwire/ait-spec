@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/depwire/ait-spec/schemas/ait-delegation.schema.json",
+  "title": "AIT Delegation Token (AIT-D)",
+  "description": "JSON Schema for the AIT Delegation Token payload as defined in AIT v0.1",
+  "type": "object",
+  "required": ["ait", "jti", "iss", "iat", "exp", "parent_session_ref", "parent_agent_id", "child_agent_id", "delegated_scope"],
+  "properties": {
+    "ait": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "jti": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "iss": {
+      "type": "string"
+    },
+    "iat": {
+      "type": "integer"
+    },
+    "exp": {
+      "type": "integer"
+    },
+    "parent_session_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "JTI of the parent AIT-S or AIT-D"
+    },
+    "parent_agent_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "child_agent_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "child_model": {
+      "type": "string"
+    },
+    "child_model_provider": {
+      "type": "string"
+    },
+    "delegated_scope": {
+      "type": "object",
+      "required": ["read", "write", "execute", "deny"],
+      "properties": {
+        "read": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "write": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "execute": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deny": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "delegation_reason": {
+      "type": "string"
+    }
+  }
+}

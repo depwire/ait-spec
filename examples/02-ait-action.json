@@ -1,0 +1,40 @@
+{
+  "header": {
+    "alg": "RS256",
+    "typ": "AIT-A",
+    "kid": "depwire-signing-key-2026-05"
+  },
+  "payload": {
+    "ait": "0.1",
+    "jti": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "iss": "depwire-cli@1.1.8",
+    "iat": 1715123120,
+    "exp": 1715123420,
+    "session_ref": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "agent_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "action": {
+      "type": "file_write",
+      "tool": "edit_file",
+      "target": "src/auth/token.ts",
+      "params": {
+        "line_start": 42,
+        "line_end": 47,
+        "operation": "replace"
+      }
+    },
+    "context": {
+      "hash": "sha256:3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e",
+      "files_in_context": [
+        "src/auth/token.ts",
+        "src/auth/middleware.ts",
+        "src/utils/crypto.ts"
+      ],
+      "token_count": 4821
+    },
+    "state": {
+      "prev_hash": "sha256:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+      "post_hash": "sha256:9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e"
+    }
+  },
+  "signature": "BASE64URL(RS256_SIGNATURE)"
+}
