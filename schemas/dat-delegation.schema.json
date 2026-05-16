@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/depwire/ait-spec/schemas/ait-delegation.schema.json",
-  "title": "AIT-D Delegation Token Payload",
-  "description": "Agent Identity Token — Delegation Token (AIT-D). Issued when a parent agent spawns a child agent.",
+  "$id": "https://github.com/depwire/dat-spec/schemas/dat-delegation.schema.json",
+  "title": "DAT-D Delegation Token Payload",
+  "description": "Depwire Action Token — Delegation Token (DAT-D). Issued when a parent agent spawns a child agent.",
   "type": "object",
-  "required": ["ait", "jti", "iss", "iat", "exp", "parent_session_ref", "parent_agent_id", "child_agent_id", "delegated_scope"],
+  "required": ["dat", "jti", "iss", "iat", "exp", "parent_session_ref", "parent_agent_id", "child_agent_id", "delegated_scope"],
   "properties": {
-    "ait": { "type": "string", "const": "0.1" },
+    "dat": { "type": "string", "const": "0.1" },
     "jti": { "type": "string", "format": "uuid" },
     "iss": { "type": "string" },
     "iat": { "type": "integer" },

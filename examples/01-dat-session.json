@@ -1,11 +1,11 @@
 {
   "header": {
     "alg": "RS256",
-    "typ": "AIT-S",
+    "typ": "DAT-S",
     "kid": "depwire-signing-key-2026-05"
   },
   "payload": {
-    "ait": "0.1",
+    "dat": "0.1",
     "jti": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "iss": "depwire-cli@1.1.8",
     "iat": 1715123054,

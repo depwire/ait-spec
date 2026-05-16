@@ -1,15 +1,21 @@
-# Agent Identity Token (AIT)
+# Depwire Action Token (DAT)
 
 **An open standard for cryptographically signing AI agent actions.**
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-[![Version](https://img.shields.io/badge/version-0.1.0--draft-blue.svg)](spec/ait-v0.1.0-draft.md)
-[![Status](https://img.shields.io/badge/status-RFC-orange.svg)](spec/ait-v0.1.0-draft.md)
-[![Open for Comments](https://img.shields.io/badge/RFC-open%20for%20comments-orange?style=flat)](https://github.com/depwire/ait-spec/issues)
+[![Version](https://img.shields.io/badge/version-0.1.0--draft-blue.svg)](spec/dat-v0.1.0-draft.md)
+[![Status](https://img.shields.io/badge/status-RFC-orange.svg)](spec/dat-v0.1.0-draft.md)
+[![Open for Comments](https://img.shields.io/badge/RFC-open%20for%20comments-orange?style=flat)](https://github.com/depwire/dat-spec/issues)
 
 ---
 
-> "AIT provides a tamper-proof, cryptographic audit trail for autonomous agents, ensuring that every AI-driven code change is tied to a verified identity, a specific model context, and an authorized security scope."
+**Renamed from AIT to DAT (May 2026)**
+
+This specification was originally published as **AIT (Agent Identity Token)**. It has been renamed to **DAT (Depwire Action Token)** to avoid acronym collision with the IETF AgentID draft also using the term "AIT". The technical content, structure, and three token types (Session, Action, Delegation) are unchanged — only the name has been updated for clarity and distinctiveness.
+
+---
+
+> "DAT provides a tamper-proof, cryptographic audit trail for autonomous agents, ensuring that every AI-driven code change is tied to a verified identity, a specific model context, and an authorized security scope."
 
 ---
 
@@ -25,46 +31,46 @@ When an AI agent modifies your production codebase, calls an external API, or sp
 
 Existing logging systems record that an action occurred. They do not cryptographically bind that action to the agent's identity, model state, and authorization context at the moment of execution.
 
-**AIT closes this gap.**
+**DAT closes this gap.**
 
 ---
 
-## What AIT Is
+## What DAT Is
 
-AIT is a JWT-based token standard (built on [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that defines three token types forming a verifiable chain of custody for every AI agent action:
+DAT is a JWT-based token standard (built on [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)) that defines three token types forming a verifiable chain of custody for every AI agent action:
 
 | Token Type | Purpose |
 |------------|---------|
-| **AIT-S** Session | Who is this agent, what model, what scope |
-| **AIT-A** Action | What did it do, to what target, with what context |
-| **AIT-D** Delegation | What did the parent agent grant to the child |
+| **DAT-S** Session | Who is this agent, what model, what scope |
+| **DAT-A** Action | What did it do, to what target, with what context |
+| **DAT-D** Delegation | What did the parent agent grant to the child |
 
-Every AIT-A traces back through the delegation chain to a root AIT-S authorized by a human. No orphan actions. No identity laundering.
+Every DAT-A traces back through the delegation chain to a root DAT-S authorized by a human. No orphan actions. No identity laundering.
 
 ```
 Human Authorization
         │
         ▼
-   AIT-S (Session)
+   DAT-S (Session)
         │
-        ├──► AIT-A (Action)        ← parent agent actions
-        └──► AIT-D (Delegation)    ← spawns child agent
+        ├──► DAT-A (Action)        ← parent agent actions
+        └──► DAT-D (Delegation)    ← spawns child agent
                   │
-                  ├──► AIT-S (Session)
-                  └──► AIT-A (Action)  ← child agent actions
+                  ├──► DAT-S (Session)
+                  └──► DAT-A (Action)  ← child agent actions
 ```
 
 ---
 
 ## Quick Example
 
-An AIT Action Token for a file modification:
+A DAT Action Token for a file modification:
 
 ```json
 {
-  "header": { "alg": "RS256", "typ": "AIT-A" },
+  "header": { "alg": "RS256", "typ": "DAT-A" },
   "payload": {
-    "ait": "0.1",
+    "dat": "0.1",
     "jti": "550e8400-e29b-41d4-a716-446655440000",
     "iss": "depwire-cli@1.1.8",
     "iat": 1715123120,
@@ -91,25 +97,25 @@ Signed with RS256. Verifiable offline. No central authority required.
 
 ---
 
-## Add an AIT Badge to Your Project
+## Add a DAT Badge to Your Project
 
-Show that your tool generates or verifies AIT tokens:
+Show that your tool generates or verifies DAT tokens:
 
 ```markdown
-[![AIT-Enabled](https://img.shields.io/badge/AIT-enabled-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
-[![AIT-Verifiable](https://img.shields.io/badge/AIT-verifiable-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
-[![AIT-Signed](https://img.shields.io/badge/agent-✓%20signed-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
+[![DAT-Enabled](https://img.shields.io/badge/DAT-enabled-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
+[![DAT-Verifiable](https://img.shields.io/badge/DAT-verifiable-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
+[![DAT-Signed](https://img.shields.io/badge/agent-✓%20signed-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
 ```
 
-[![AIT-Enabled](https://img.shields.io/badge/AIT-enabled-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
-[![AIT-Verifiable](https://img.shields.io/badge/AIT-verifiable-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
-[![AIT-Signed](https://img.shields.io/badge/agent-✓%20signed-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/ait-spec)
+[![DAT-Enabled](https://img.shields.io/badge/DAT-enabled-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
+[![DAT-Verifiable](https://img.shields.io/badge/DAT-verifiable-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
+[![DAT-Signed](https://img.shields.io/badge/agent-✓%20signed-00d4aa?style=flat&labelColor=555)](https://github.com/depwire/dat-spec)
 
 ---
 
 ## Specification
 
-The full specification is in **[spec/ait-v0.1.0-draft.md](spec/ait-v0.1.0-draft.md)**.
+The full specification is in **[spec/dat-v0.1.0-draft.md](spec/dat-v0.1.0-draft.md)**.
 
 It covers:
 
@@ -128,9 +134,9 @@ It covers:
 
 JSON Schema files for all three token types are in [`schemas/`](schemas/):
 
-- [`ait-session.schema.json`](schemas/ait-session.schema.json) — AIT-S
-- [`ait-action.schema.json`](schemas/ait-action.schema.json) — AIT-A
-- [`ait-delegation.schema.json`](schemas/ait-delegation.schema.json) — AIT-D
+- [`dat-session.schema.json`](schemas/dat-session.schema.json) — DAT-S
+- [`dat-action.schema.json`](schemas/dat-action.schema.json) — DAT-A
+- [`dat-delegation.schema.json`](schemas/dat-delegation.schema.json) — DAT-D
 
 ---
 
@@ -138,13 +144,13 @@ JSON Schema files for all three token types are in [`schemas/`](schemas/):
 
 A reference implementation in [Depwire CLI](https://github.com/depwire/depwire) is in progress. It will provide:
 
-- AIT token generation for every MCP tool call
-- AIT chain verification
-- AIT audit log export (JSON, SARIF)
+- DAT token generation for every MCP tool call
+- DAT chain verification
+- DAT audit log export (JSON, SARIF)
 
-Tracking: [Issue #1](https://github.com/depwire/ait-spec/issues/1)
+Tracking: [Issue #1](https://github.com/depwire/dat-spec/issues/1)
 
-Any tool, platform, or AI provider can implement AIT independently — the spec is CC0 (public domain) and requires no coordination with Depwire.
+Any tool, platform, or AI provider can implement DAT independently — the spec is CC0 (public domain) and requires no coordination with Depwire.
 
 ---
 
@@ -160,9 +166,9 @@ Any tool, platform, or AI provider can implement AIT independently — the spec 
 
 ## Status
 
-AIT v0.1.0 is a **draft RFC** open for public comment.
+DAT v0.1.0 is a **draft RFC** open for public comment.
 
-Feedback is welcome via [GitHub Issues](https://github.com/depwire/ait-spec/issues). The goal is an open standard, not a Depwire-proprietary one.
+Feedback is welcome via [GitHub Issues](https://github.com/depwire/dat-spec/issues). The goal is an open standard, not a Depwire-proprietary one.
 
 **NIST alignment:** This specification is designed to align with NIST's February 2026 concept paper on *"Accelerating the Adoption of Software and AI Agent Identity and Authorization"* and the NIST AI Risk Management Framework.
 
@@ -170,7 +176,7 @@ Feedback is welcome via [GitHub Issues](https://github.com/depwire/ait-spec/issu
 
 ## Governance
 
-AIT is stewarded by Depwire but governed by the community. The spec is published under CC0 1.0 Universal (public domain) — Depwire holds no special rights over implementations or derivative standards.
+DAT is stewarded by Depwire but governed by the community. The spec is published under CC0 1.0 Universal (public domain) — Depwire holds no special rights over implementations or derivative standards.
 
 Decisions about the spec are made through the public issue tracker. Any proposal with community consensus will be incorporated regardless of origin. The steward's role is to maintain the spec document and coordinate releases — not to control the direction.
 
@@ -188,13 +194,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Related Work
 
-| Standard | What it does | How AIT relates |
+| Standard | What it does | How DAT relates |
 |----------|-------------|-----------------|
-| JWT (RFC 7519) | General token format | AIT is built on JWT |
-| OAuth 2.0 | Human identity delegation | AIT extends to agent identity |
-| OpenTelemetry | Distributed tracing | AIT adds cryptographic signing |
-| W3C Provenance | Data lineage | AIT can sign provenance records |
-| NIST AI RMF | AI risk management | AIT implements the identity layer |
+| JWT (RFC 7519) | General token format | DAT is built on JWT |
+| OAuth 2.0 | Human identity delegation | DAT extends to agent identity |
+| OpenTelemetry | Distributed tracing | DAT adds cryptographic signing |
+| W3C Provenance | Data lineage | DAT can sign provenance records |
+| NIST AI RMF | AI risk management | DAT implements the identity layer |
 
 ---
 
@@ -204,4 +210,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-*[github.com/depwire/ait-spec](https://github.com/depwire/ait-spec) — CC0 1.0 Universal*
+*[github.com/depwire/dat-spec](https://github.com/depwire/dat-spec) — CC0 1.0 Universal*

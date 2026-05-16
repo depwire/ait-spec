@@ -1,17 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/depwire/ait-spec/schemas/ait-action.schema.json",
-  "title": "AIT-A Action Token Payload",
-  "description": "Agent Identity Token — Action Token (AIT-A). Issued per atomic agent action.",
+  "$id": "https://github.com/depwire/dat-spec/schemas/dat-action.schema.json",
+  "title": "DAT-A Action Token Payload",
+  "description": "Depwire Action Token — Action Token (DAT-A). Issued per atomic agent action.",
   "type": "object",
-  "required": ["ait", "jti", "iss", "iat", "exp", "session_ref", "agent_id", "action"],
+  "required": ["dat", "jti", "iss", "iat", "exp", "session_ref", "agent_id", "action"],
   "properties": {
-    "ait": { "type": "string", "const": "0.1" },
+    "dat": { "type": "string", "const": "0.1" },
     "jti": { "type": "string", "format": "uuid" },
     "iss": { "type": "string" },
     "iat": { "type": "integer" },
     "exp": { "type": "integer", "description": "Max 300s from iat for action tokens" },
-    "session_ref": { "type": "string", "format": "uuid", "description": "jti of parent AIT-S or AIT-D" },
+    "session_ref": { "type": "string", "format": "uuid", "description": "jti of parent DAT-S or DAT-D" },
     "agent_id": { "type": "string", "format": "uuid", "description": "Must match agent_id in referenced session" },
     "action": {
       "type": "object",

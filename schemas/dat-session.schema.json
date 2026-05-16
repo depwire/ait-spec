@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/depwire/ait-spec/schemas/ait-session.schema.json",
-  "title": "AIT-S Session Token Payload",
-  "description": "Agent Identity Token — Session Token (AIT-S). Issued when an agent session begins.",
+  "$id": "https://github.com/depwire/dat-spec/schemas/dat-session.schema.json",
+  "title": "DAT-S Session Token Payload",
+  "description": "Depwire Action Token — Session Token (DAT-S). Issued when an agent session begins.",
   "type": "object",
-  "required": ["ait", "jti", "iss", "iat", "exp", "agent_id", "model", "model_provider", "scope"],
+  "required": ["dat", "jti", "iss", "iat", "exp", "agent_id", "model", "model_provider", "scope"],
   "properties": {
-    "ait": { "type": "string", "const": "0.1", "description": "AIT spec version" },
+    "dat": { "type": "string", "const": "0.1", "description": "DAT spec version" },
     "jti": { "type": "string", "format": "uuid", "description": "Unique token ID (UUID v4)" },
     "iss": { "type": "string", "description": "Issuer identifier (e.g. depwire-cli@1.1.8)" },
     "iat": { "type": "integer", "description": "Issued at (Unix timestamp)" },

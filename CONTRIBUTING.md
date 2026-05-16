@@ -1,6 +1,6 @@
-# Contributing to AIT Spec
+# Contributing to DAT Spec
 
-AIT is an open standard stewarded by Depwire under CC0 1.0 (public domain). All contributions are welcome.
+DAT is an open standard stewarded by Depwire under CC0 1.0 (public domain). All contributions are welcome.
 
 ## How to contribute
 
@@ -11,14 +11,14 @@ Open a GitHub Issue with the label `spec-feedback`. Describe the section, the co
 Open a Pull Request against `main`. Reference the spec section you are changing. Include rationale.
 
 **New implementations:**
-If you have implemented AIT in your tool, open an Issue with label `implementation` and we will add you to the implementations list in the README.
+If you have implemented DAT in your tool, open an Issue with label `implementation` and we will add you to the implementations list in the README.
 
 ## Issue labels
 
 - `spec-feedback` — feedback on existing spec text
 - `new-feature` — proposed addition to the spec
 - `security` — security concern or vulnerability
-- `implementation` — new AIT implementation to list
+- `implementation` — new DAT implementation to list
 - `question` — general question about the spec
 
 ## What makes a good spec PR
